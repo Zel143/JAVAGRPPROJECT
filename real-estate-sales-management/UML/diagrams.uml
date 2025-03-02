@@ -1,0 +1,41 @@
+@startuml
+
+package "Real Estate Sales Management" {
+    class Lot {
+        - size: double
+        - location: String
+        - price: double
+        - status: String
+        + getSize(): double
+        + setSize(size: double): void
+        + getLocation(): String
+        + setLocation(location: String): void
+        + getPrice(): double
+        + setPrice(price: double): void
+        + getStatus(): String
+        + setStatus(status: String): void
+    }
+
+    class LotService {
+        + addLot(lot: Lot): void
+        + reserveLot(lot: Lot): void
+        + sellLot(lot: Lot): void
+        + filterLots(size: double, location: String): List<Lot>
+        + generateReport(): String
+    }
+
+    class MainView {
+        + displayLots(lots: List<Lot>): void
+        + processUserInput(): void
+    }
+
+    class ReportGenerator {
+        + generateReport(lots: List<Lot>): String
+    }
+
+    LotService --> Lot : manages >
+    MainView --> LotService : interacts with >
+    ReportGenerator --> Lot : generates report for >
+}
+
+@enduml
